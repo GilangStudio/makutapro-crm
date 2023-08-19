@@ -275,8 +275,9 @@
                                                             <form action="{{ route('project.banner.destroy', ['id_project' => $project->id, 'id_banner' => $banner->id]) }}" method="POST" onsubmit="return confirm('Are you sure want to delete this banner?')">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <a href="{{ route('project.banner.edit', ['id_project' => $project->id, 'id_banner' => $banner->id]) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-                                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                                                <a href="{{ route('project.banner.edit', ['id_project' => $project->id, 'id_banner' => $banner->id]) }}" title="Show Detail" class="btn p-0"><img src="{{asset('assets/images/button/info.png')}}" alt="Show Detail"></a></a>
+                                                                {{-- <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button> --}}
+                                                                <button type="submit" class="btn p-0"><a title="Delete Banner" class="ms-1" href=""><img src="{{asset('assets/images/button/trash.png')}}" alt="Delete Banner"></a></button>
                                                             </form>
                                                         </td>
                                                     </tr>
