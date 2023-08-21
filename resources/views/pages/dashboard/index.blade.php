@@ -224,6 +224,7 @@
 				</div>
 			 </div>
 		</div>
+
 		<div class="col-xl-12 xl-100 notification box-col-12">
 			<div class="card">
 				<div class="card-header card-no-border">
@@ -257,6 +258,79 @@
 				</div>
 			</div>
 		</div>
+
+		{{-- @dump($data_prospect) --}}
+		@foreach ($data_prospect as $item)
+			{{-- @dump($item) --}}
+			<div class="col-xl-12 xl-100 notification box-col-12">
+				<div class="card">
+					<div class="card-header card-no-border">
+						<div class="header-top">
+							<h5 class="m-0">Prospects {{ $item['project'] }}</h5>
+						</div>
+					</div>
+					<div class="card-body pt-0">
+						<div class="table-responsive">
+							<table class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th>No</th>
+										<th width="25%">Nama Agent</th>
+										<th>New</th>
+										<th>Process</th>
+										<th>Closing</th>
+										<th>Not Interested</th>
+										<th>Expired</th>
+										<th>Total Leads</th>
+									</tr>
+								</thead>
+								<tbody>
+									@php 
+										$count_total_new = 0;
+										$count_total_process = 0;
+										$count_total_closing = 0;
+										$count_total_not_interested = 0;
+										$count_total_expired = 0;
+										$count_total = 0;
+									@endphp
+									@foreach ($item['prospect'] as $key => $value)
+										@php 
+											$count_total_new = $count_total_new + $value->total_new;
+											$count_total_process = $count_total_process + $value->total_process;
+											$count_total_closing = $count_total_closing + $value->total_closing;
+											$count_total_not_interested = $count_total_not_interested + $value->total_not_interested;
+											$count_total_expired = $count_total_expired + $value->total_expired;
+											$count_total = $count_total + $value->total;
+										@endphp
+										<tr>
+											<td>{{ $loop->iteration }}</td>
+											<td>{{ $value->agent_name }}</td>
+											<td>{{ $value->total_new }}</td>
+											<td>{{ $value->total_process }}</td>
+											<td>{{ $value->total_closing }}</td>
+											<td>{{ $value->total_not_interested }}</td>
+											<td>{{ $value->total_expired }}</td>
+											<th>{{ $value->total }}</th>
+										</tr>
+									@endforeach
+								</tbody>
+								<thead>
+									<tr>
+										<th class="text-center" colspan="2">Total</th>
+										<th>{{ $count_total_new }}</th>
+										<th>{{ $count_total_process }}</th>
+										<th>{{ $count_total_closing }}</th>
+										<th>{{ $count_total_not_interested }}</th>
+										<th>{{ $count_total_expired }}</th>
+										<th>{{ $count_total }}</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		@endforeach
 	</div>
 </div>
 <script type="text/javascript">
